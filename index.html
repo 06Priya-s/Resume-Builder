@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResumeCraft Pro | Build Your Perfect Resume</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">ResumeCraft Pro</div>
+        <p>Build your professional resume in minutes</p>
+    </header>
+
+    <div class="container">
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="theme-selector">
+    <span class="theme-label">Choose a Color Theme:</span>
+    <div class="theme-options">
+        <div class="theme-option selected" style="background: #6a0dad;" onclick="changeTheme('#6a0dad', '#9c27b0', '#4a148c', '#e1bee7')"></div>
+        <div class="theme-option" style="background: #2c3e50;" onclick="changeTheme('#2c3e50', '#34495e', '#1a252f', '#bdc3c7')"></div>
+        <div class="theme-option" style="background: #16a085;" onclick="changeTheme('#16a085', '#1abc9c', '#0d6252', '#a3e4d7')"></div>
+        <div class="theme-option" style="background: #c0392b;" onclick="changeTheme('#c0392b', '#e74c3c', '#7b241c', '#f5b7b1')"></div>
+        <div class="theme-option" style="background: #8e44ad;" onclick="changeTheme('#8e44ad', '#9b59b6', '#5d2d80', '#d2b4de')"></div>
+        <div class="theme-option" style="background: #2980b9;" onclick="changeTheme('#2980b9', '#3498db', '#1a5276', '#aed6f1')"></div>
+        </div>
+    </div>
+        <div class="main-content">
+            <section class="form-section">
+                <form id="resumeForm" class="resume-form">
+                    <h2>Personal Information</h2>
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="(123) 456-7890">
+                    </div>
+                   <div class="form-group">
+                        <label for="github">GitHub Profile</label>
+                        <input type="url" id="github" placeholder="https://github.com/yourusername">
+                    </div>
+                    <div class="form-group">
+                        <label for="linkedin">LinkedIn Profile</label>
+                        <input type="url" id="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+                    </div>
+                    <div class="form-group">
+                        <label for="profile">Profile Summary</label>
+                        <textarea id="profile" placeholder="Brief summary about yourself and your career objectives"></textarea>
+                    </div>
+
+                    <h2>Education</h2>
+                    <div id="educationContainer" class="dynamic-section">
+                        <div class="dynamic-item education-item">
+                            <button type="button" class="remove-btn" onclick="removeItem(this)">×</button>
+                            <div class="form-group">
+                                <label for="educationSchool0">School/University</label>
+                                <input type="text" id="educationSchool0" placeholder="University of Example">
+                            </div>
+                            <div class="form-group">
+                                <label for="educationDegree0">Degree</label>
+                                <input type="text" id="educationDegree0" placeholder="Bachelor of Science in Computer Science">
+                            </div>
+                            <div class="form-group">
+                                <label for="educationDate0">Date</label>
+                                <input type="text" id="educationDate0" placeholder="2015 - 2019">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="add-btn" onclick="addEducation()">
+                        <i class="fas fa-plus"></i> Add Education
+                    </button>
+
+                    <h2>Skills</h2>
+                    <div class="form-group">
+                        <div class="skills-container" id="skillsContainer">
+                            <label class="skill-tag">
+                                <input type="checkbox" name="skills" value="HTML"> HTML
+                            </label>
+                            <label class="skill-tag">
+                                <input type="checkbox" name="skills" value="CSS"> CSS
+                            </label>
+                            <label class="skill-tag">
+                                <input type="checkbox" name="skills" value="JavaScript"> JavaScript
+                            </label>
+                            <label class="skill-tag">
+                                <input type="checkbox" name="skills" value="React"> React
+                            </label>
+                            <label class="skill-tag">
+                                <input type="checkbox" name="skills" value="Node.js"> Node.js
+                            </label>
+                            <label class="skill-tag">
+                                <input type="checkbox" name="skills" value="Python"> Python
+                            </label>
+                            <label class="skill-tag">
+                                <input type="checkbox" name="skills" value="Java"> Java
+                            </label>
+                            <label class="skill-tag">
+                                <input type="checkbox" name="skills" value="SQL"> SQL
+                            </label>
+                            <label class="skill-tag">
+                                <input type="checkbox" name="skills" value="Git"> Git
+                            </label>
+                            <label class="skill-tag">
+                                <input type="checkbox" name="skills" value="Project Management"> Project Management
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="otherSkills">Other Skills (comma separated)</label>
+                        <input type="text" id="otherSkills" placeholder="Leadership, Public Speaking, etc.">
+                    </div>
+
+                    <h2>Experience</h2>
+                    <div id="experienceContainer" class="dynamic-section">
+                        <div class="dynamic-item experience-item">
+                            <button type="button" class="remove-btn" onclick="removeItem(this)">×</button>
+                            <div class="form-group">
+                                <label for="experienceCompany0">Company</label>
+                                <input type="text" id="experienceCompany0" placeholder="Tech Corp Inc.">
+                            </div>
+                            <div class="form-group">
+                                <label for="experiencePosition0">Position</label>
+                                <input type="text" id="experiencePosition0" placeholder="Software Developer">
+                            </div>
+                            <div class="form-group">
+                                <label for="experienceDate0">Date</label>
+                                <input type="text" id="experienceDate0" placeholder="2019 - Present">
+                            </div>
+                            <div class="form-group">
+                                <label for="experienceDescription0">Description</label>
+                                <textarea id="experienceDescription0" placeholder="Describe your responsibilities and achievements"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="add-btn" onclick="addExperience()">
+                        <i class="fas fa-plus"></i> Add Experience
+                    </button>
+
+                    <h2>Projects</h2>
+                    <div id="projectsContainer" class="dynamic-section">
+                        <div class="dynamic-item project-item">
+                            <button type="button" class="remove-btn" onclick="removeItem(this)">×</button>
+                            <div class="form-group">
+                                <label for="projectName0">Project Name</label>
+                                <input type="text" id="projectName0" placeholder="E-commerce Website">
+                            </div>
+                            <div class="form-group">
+                                <label for="projectDate0">Date</label>
+                                <input type="text" id="projectDate0" placeholder="Jan 2023 - Mar 2023">
+                            </div>
+                            <div class="form-group">
+                                <label for="projectDescription0">Description</label>
+                                <textarea id="projectDescription0" placeholder="Describe your project and your contributions"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="projectTech0">Technologies Used</label>
+                                <input type="text" id="projectTech0" placeholder="React, Node.js, MongoDB">
+                            </div>
+                            <div class="form-group">
+                                <label for="projectDemo0">Demo URL</label>
+                                <input type="url" id="projectDemo0" placeholder="https://example.com/demo">
+                            </div>
+                            <div class="form-group">
+                                <label for="projectCode0">Code Repository</label>
+                                <input type="url" id="projectCode0" placeholder="https://github.com/username/project">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="add-btn" onclick="addProject()">
+                        <i class="fas fa-plus"></i> Add Project
+                    </button>
+
+                    <h2>Certifications</h2>
+                    <div id="certificationsContainer" class="dynamic-section">
+                        <div class="dynamic-item certification-item">
+                            <button type="button" class="remove-btn" onclick="removeItem(this)">×</button>
+                            <div class="form-group">
+                                <label for="certificationName0">Certification Name</label>
+                                <input type="text" id="certificationName0" placeholder="AWS Certified Solutions Architect">
+                            </div>
+                            <div class="form-group">
+                                <label for="certificationOrg0">Issuing Organization</label>
+                                <input type="text" id="certificationOrg0" placeholder="Amazon Web Services">
+                            </div>
+                            <div class="form-group">
+                                <label for="certificationDate0">Date Earned</label>
+                                <input type="text" id="certificationDate0" placeholder="June 2022">
+                            </div>
+                            <div class="form-group">
+                                <label for="certificationExpiry0">Expiration Date (if applicable)</label>
+                                <input type="text" id="certificationExpiry0" placeholder="June 2025">
+                            </div>
+                            <div class="form-group">
+                                <label for="certificationId0">Credential ID (if applicable)</label>
+                                <input type="text" id="certificationId0" placeholder="AWS-123456789">
+                            </div>
+                            <div class="form-group">
+                                <label for="certificationUrl0">Credential URL</label>
+                                <input type="url" id="certificationUrl0" placeholder="https://www.credly.com/badges/123456">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="add-btn" onclick="addCertification()">
+                        <i class="fas fa-plus"></i> Add Certification
+                    </button>
+
+                    <h2>Additional Information</h2>
+                    <div id="additionalContainer" class="dynamic-section">
+                        <div class="dynamic-item additional-item">
+                            <button type="button" class="remove-btn" onclick="removeItem(this)">×</button>
+                            <div class="form-group">
+                                <label for="additionalTitle0">Title</label>
+                                <input type="text" id="additionalTitle0" placeholder="Languages, Volunteer Work, etc.">
+                            </div>
+                            <div class="form-group">
+                                <label for="additionalDescription0">Description</label>
+                                <textarea id="additionalDescription0" placeholder="Details about this additional information"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="add-btn" onclick="addAdditional()">
+                        <i class="fas fa-plus"></i> Add Additional Information
+                    </button>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear Form</button>
+                        <button type="button" class="btn btn-primary" onclick="downloadPDF()">Download PDF</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="preview-section">
+                <h2>Resume Preview</h2>
+                <div class="resume-preview" id="resumePreview">
+                    <div class="resume-header">
+                        <h2 id="previewName">Your Name</h2>
+                        <div class="contact-info">
+                            <div class="contact-item" id="previewEmail">
+                                <i class="fas fa-envelope"></i> your.email@example.com
+                            </div>
+                            <span class="separator">|</span>
+                            <div class="contact-item" id="previewPhone">
+                                <i class="fas fa-phone"></i> (123) 456-7890
+                            </div>
+                            <span class="separator">|</span>
+                            <div class="contact-item" id="previewGithub">
+                                <i class="fab fa-github"></i> github.com/username
+                            </div>
+                            <span class="separator">|</span>
+                            <div class="contact-item" id="previewLinkedin">
+                                <i class="fab fa-linkedin"></i> linkedin.com/in/username
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-section">
+                        <h3 class="section-title">Profile</h3>
+                        <p id="previewProfile">Brief summary about yourself and your career objectives will appear here.</p>
+                    </div>
+
+                    <div class="section">
+                        <h3 class="section-title">Education</h3>
+                        <div id="previewEducation">
+                            <div class="education-item">
+                                <div class="item-header">
+                                    <span class="item-title">University of Example</span>
+                                    <span class="item-date">2015 - 2019</span>
+                                </div>
+                                <div class="item-subtitle">Bachelor of Science in Computer Science</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h3 class="section-title">Skills</h3>
+                        <div class="skills-list" id="previewSkills">
+                            <span class="skill-pill">HTML</span>
+                            <span class="skill-pill">CSS</span>
+                            <span class="skill-pill">JavaScript</span>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h3 class="section-title">Experience</h3>
+                        <div id="previewExperience">
+                            <div class="experience-item">
+                                <div class="item-header">
+                                    <span class="item-title">Tech Corp Inc.</span>
+                                    <span class="item-date">2019 - Present</span>
+                                </div>
+                                <div class="item-subtitle">Software Developer</div>
+                                <p>Describe your responsibilities and achievements will appear here.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h3 class="section-title">Projects</h3>
+                        <div id="previewProjects">
+                            <div class="project-item">
+                                <div class="item-header">
+                                    <span class="item-title">E-commerce Website</span>
+                                    <span class="item-date">Jan 2023 - Mar 2023</span>
+                                </div>
+                                <p>Describe your project and your contributions will appear here.</p>
+                                <div class="item-subtitle">Technologies: React, Node.js, MongoDB</div>
+                                <div class="project-links">
+                                    <a href="#" class="project-link" id="previewProjectDemo0">
+                                        <i class="fas fa-external-link-alt"></i> Live Demo
+                                    </a>
+                                    <a href="#" class="project-link" id="previewProjectCode0">
+                                        <i class="fab fa-github"></i> View Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h3 class="section-title">Certifications</h3>
+                        <div id="previewCertifications">
+                            <div class="certification-item">
+                                <div class="item-header">
+                                    <span class="item-title">AWS Certified Solutions Architect</span>
+                                    <span class="item-date">June 2022</span>
+                                </div>
+                                <div class="item-subtitle">Issued by: Amazon Web Services</div>
+                                <p>Expiration: June 2025 | Credential ID: AWS-123456789</p>
+                                <div class="certification-links">
+                                    <a href="#" class="certification-link" id="previewCertificationUrl0">
+                                        <i class="fas fa-external-link-alt"></i> View Credential
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h3 class="section-title">Additional Information</h3>
+                        <div id="previewAdditional">
+                            <div class="additional-item">
+                                <h4 class="item-title">Languages</h4>
+                                <p>English (Fluent), Spanish (Intermediate), French (Basic)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+<script src="script.js"></script>
+    
+</body>
+</html>
